@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elgentos\MediaGalleryVideo\Controller\Adminhtml\Video;
+namespace Elgentos\GalleryMp4Solver\Controller\Adminhtml\Video;
 
 use Exception;
 use Magento\Backend\App\Action;
@@ -11,8 +11,8 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
-use Elgentos\MediaGalleryVideo\Model\PosterStorage;
-use Elgentos\MediaGalleryVideo\Model\VideoLocator;
+use Elgentos\GalleryMp4Solver\Model\PosterStorage;
+use Elgentos\GalleryMp4Solver\Model\VideoLocator;
 use Psr\Log\LoggerInterface;
 
 /**

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Elgentos\MediaGalleryVideo\Plugin;
+namespace Elgentos\GalleryMp4Solver\Plugin;
 
 use Magento\Backend\Model\UrlInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\MediaGalleryUi\Model\GetDetailsByAssetId;
 use Magento\MediaGalleryUi\Ui\Component\Listing\Columns\Url;
-use Elgentos\MediaGalleryVideo\Model\VideoLocator;
+use Elgentos\GalleryMp4Solver\Model\VideoLocator;
 
 /**
  * Points the media gallery at a video's poster wherever it would otherwise show an image.
@@ -58,7 +58,7 @@ class VideoThumbnail
                 continue;
             }
 
-            $posterSaveUrl ??= $this->url->getUrl('elgentos_mediagalleryvideo/video/poster');
+            $posterSaveUrl ??= $this->url->getUrl('elgentos_gallerymp4solver/video/poster');
 
             $item['video_url'] = $this->videoLocator->getFile($path)['url'] ?? '';
             $item['video_poster_url'] = $this->getPosterUrl($path) ?? '';

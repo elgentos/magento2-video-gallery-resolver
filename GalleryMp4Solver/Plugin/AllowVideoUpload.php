@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Elgentos\MediaGalleryVideo\Plugin;
+namespace Elgentos\GalleryMp4Solver\Plugin;
 
 use Magento\Framework\UrlInterface;
 use Magento\MediaGalleryUi\Ui\Component\ImageUploader;
-use Elgentos\MediaGalleryVideo\Model\VideoLocator;
+use Elgentos\GalleryMp4Solver\Model\VideoLocator;
 
 /**
  * Lets the media gallery's own uploader accept video files.

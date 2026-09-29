@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elgentos\MediaGalleryVideo\Model;
+namespace Elgentos\GalleryMp4Solver\Model;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\NoSuchEntityException;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elgentos\MediaGalleryVideo\Model\MediaGallery;
+namespace Elgentos\GalleryMp4Solver\Model\MediaGallery;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
@@ -12,8 +12,8 @@ use Magento\MediaGalleryApi\Api\Data\AssetInterface;
 use Magento\MediaGalleryApi\Api\Data\AssetInterfaceFactory;
 use Magento\MediaGallerySynchronization\Model\CreateAssetFromFile as ImageAssetFactory;
 use Magento\MediaGallerySynchronizationApi\Model\CreateAssetFromFileInterface;
-use Elgentos\MediaGalleryVideo\Model\JpegDimensions;
-use Elgentos\MediaGalleryVideo\Model\VideoLocator;
+use Elgentos\GalleryMp4Solver\Model\JpegDimensions;
+use Elgentos\GalleryMp4Solver\Model\VideoLocator;
 
 /**
  * Builds media gallery assets, adding support for video files.

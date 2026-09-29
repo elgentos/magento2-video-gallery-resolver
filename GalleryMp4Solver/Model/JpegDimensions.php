@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elgentos\MediaGalleryVideo\Model;
+namespace Elgentos\GalleryMp4Solver\Model;
 
 /**
  * Reads the pixel size of a JPEG held in memory.
