@@ -38,6 +38,7 @@
             <video if="$row().video_url && !$row().video_poster_url"
                    attr="src: $row().video_url + '#t=0.5'"
                    class="media-gallery-image-column"
+                   style="position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;padding:5px;width:auto;height:auto;max-width:100%;max-height:100%"
                    preload="metadata"
                    muted
                    playsinline
