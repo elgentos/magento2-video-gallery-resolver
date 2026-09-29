@@ -21,12 +21,6 @@
              css="{ selected: isSelected($row()) }"
              click="function(){ clickOnImage($row(), $collapsible.opened()) }"
         >
-            <!--
-              Video rows keep core's thumbnail image in the DOM but hidden, because
-              deleteImages.js reads its src to work out which file to delete. loading="lazy" on a
-              display:none element means the browser never actually requests it, so the missing
-              .thumbs file costs nothing.
-            -->
             <img if="$row().video_url"
                  attr="src: $col.getUrl($row())"
                  loading="lazy"

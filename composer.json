@@ -1,5 +1,5 @@
 {
-    "name": "elgentos/module-gallery-mp4-solver",
+    "name": "elgentos/magento2-gallery-mp4-solver",
     "description": "MP4 support for the Magento media gallery: upload, sync, poster thumbnails and clean deletion of video assets",
     "type": "magento2-module",
     "version": "1.0.2",
@@ -18,10 +18,10 @@
     },
     "autoload": {
         "files": [
-            "GalleryMp4Solver/registration.php"
+            "src/registration.php"
         ],
         "psr-4": {
-            "Elgentos\\GalleryMp4Solver\\": "GalleryMp4Solver/"
+            "Elgentos\\GalleryMp4Solver\\": "src/"
         }
     }
 }

@@ -68,8 +68,6 @@ class CreateAssetFromFile implements CreateAssetFromFileInterface
                 'title' => $this->videoLocator->getFileName($path),
                 'width' => $width,
                 'height' => $height,
-                // Hashed from the file handle rather than its contents: the core helper takes the
-                // whole file as a string, which for a video means loading it all into memory.
                 'hash' => (string) sha1_file($media->getAbsolutePath($path)),
                 'size' => (int) ($stat['size'] ?? 0),
                 'contentType' => $this->videoLocator->getMimeType($path),

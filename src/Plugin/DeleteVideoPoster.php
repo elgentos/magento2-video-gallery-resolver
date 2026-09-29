@@ -34,7 +34,6 @@ class DeleteVideoPoster
     public function afterDeleteFile(Storage $subject, Storage $result, string $target): Storage
     {
         if ($this->videoLocator->isVideoFile($target)) {
-            // Through Storage again, so the poster's .thumbs copy goes with it.
             $subject->deleteFile($this->videoLocator->getPosterPath($target));
         }
 

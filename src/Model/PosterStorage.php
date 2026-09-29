@@ -55,12 +55,7 @@ class PosterStorage
         $posterPath = $this->videoLocator->getPosterPath($videoPath);
 
         $this->filesystem->getDirectoryWrite(DirectoryList::MEDIA)->writeFile($posterPath, $contents);
-
-        // Posters captured before they were kept out of the gallery were imported as images.
         $this->deleteAssetsByPaths->execute([$posterPath]);
-
-        // Re-import the video so its asset takes the real dimensions from the poster, in place of
-        // the 16:9 default it was given on upload.
         $this->importFiles->execute([$videoPath]);
 
         return [
@@ -80,8 +75,6 @@ class PosterStorage
 
         $encoded = substr($dataUri, strlen(self::DATA_URI_PREFIX));
 
-        // Base64 is four characters per three bytes, so an oversized poster is refused before it
-        // is decoded.
         if (strlen($encoded) > 4 * (int) ceil(self::MAX_POSTER_BYTES / 3)) {
             throw new LocalizedException(__('The poster is too large.'));
         }
@@ -93,7 +86,6 @@ class PosterStorage
             throw new LocalizedException(__('The poster could not be decoded.'));
         }
 
-        // Reject anything that is not actually a JPEG, whatever the data URI claimed.
         if ($this->jpegDimensions->get($contents) === null) {
             throw new LocalizedException(__('The poster is not a valid image.'));
         }
