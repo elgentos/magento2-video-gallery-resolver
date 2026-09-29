@@ -17,8 +17,6 @@ composer require elgentos/module-gallery-mp4-solver:^1.0
 bin/magento setup:upgrade
 ```
 
-To install the latest commit instead of a release, require `dev-main`.
-
 ## License
 
 MIT, see [LICENSE](LICENSE).
