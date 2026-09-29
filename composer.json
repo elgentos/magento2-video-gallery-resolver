@@ -1,0 +1,27 @@
+{
+    "name": "elgentos/module-media-gallery-video",
+    "description": "MP4 support for the Magento media gallery: upload, sync, poster thumbnails and clean deletion of video assets",
+    "type": "magento2-module",
+    "license": "MIT",
+    "require": {
+        "php": "~8.3.0||~8.4.0",
+        "magento/framework": "*",
+        "magento/module-backend": "*",
+        "magento/module-cms": "*",
+        "magento/module-media-gallery-api": "*",
+        "magento/module-media-gallery-synchronization": "*",
+        "magento/module-media-gallery-synchronization-api": "*",
+        "magento/module-media-gallery-ui": "*",
+        "magento/module-store": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Controller\\": "Controller/",
+            "Model\\": "Model/",
+            "Plugin\\": "Plugin/"
+        }
+    }
+}
