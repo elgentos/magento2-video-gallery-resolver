@@ -2,7 +2,7 @@
     "name": "elgentos/magento2-gallery-mp4-solver",
     "description": "MP4 support for the Magento media gallery: upload, sync, poster thumbnails and clean deletion of video assets",
     "type": "magento2-module",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "license": "MIT",
     "require": {
         "php": "~8.3.0||~8.4.0",
