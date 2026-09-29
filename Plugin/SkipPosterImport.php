@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Plugin;
+namespace Elgentos\MediaGalleryVideo\Plugin;
 
 use Magento\MediaGallerySynchronizationApi\Model\ImportFilesComposite;
-use Model\VideoLocator;
+use Elgentos\MediaGalleryVideo\Model\VideoLocator;
 
 /**
  * Keeps video posters out of the media gallery as assets of their own.

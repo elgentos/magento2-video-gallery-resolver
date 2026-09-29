@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Plugin;
+namespace Elgentos\MediaGalleryVideo\Plugin;
 
 use Magento\Cms\Model\Wysiwyg\Images\Storage;
-use Model\VideoLocator;
+use Elgentos\MediaGalleryVideo\Model\VideoLocator;
 
 /**
  * Stops Magento generating an image thumbnail for a video file.

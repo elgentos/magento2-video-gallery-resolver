@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Model;
+namespace Elgentos\MediaGalleryVideo\Model;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
@@ -11,8 +11,8 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filesystem;
 use Magento\MediaGalleryApi\Api\DeleteAssetsByPathsInterface;
 use Magento\MediaGallerySynchronizationApi\Model\ImportFilesInterface;
-use Model\JpegDimensions;
-use Model\VideoLocator;
+use Elgentos\MediaGalleryVideo\Model\JpegDimensions;
+use Elgentos\MediaGalleryVideo\Model\VideoLocator;
 
 /**
  * Writes a video's poster frame next to the video.

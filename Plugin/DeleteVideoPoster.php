@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Plugin;
+namespace Elgentos\MediaGalleryVideo\Plugin;
 
 use Magento\Cms\Model\Wysiwyg\Images\Storage;
 use Magento\Framework\Exception\LocalizedException;
-use Model\VideoLocator;
+use Elgentos\MediaGalleryVideo\Model\VideoLocator;
 
 /**
  * Deletes a video's poster along with the video.

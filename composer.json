@@ -19,9 +19,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Controller\\": "Controller/",
-            "Model\\": "Model/",
-            "Plugin\\": "Plugin/"
+            "Elgentos\\MediaGalleryVideo\\": ""
         }
     }
 }

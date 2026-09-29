@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Plugin;
+namespace Elgentos\MediaGalleryVideo\Plugin;
 
 use Magento\Backend\Model\UrlInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\MediaGalleryUi\Model\GetDetailsByAssetId;
 use Magento\MediaGalleryUi\Ui\Component\Listing\Columns\Url;
-use Model\VideoLocator;
+use Elgentos\MediaGalleryVideo\Model\VideoLocator;
 
 /**
  * Points the media gallery at a video's poster wherever it would otherwise show an image.
@@ -58,7 +58,7 @@ class VideoThumbnail
                 continue;
             }
 
-            $posterSaveUrl ??= $this->url->getUrl('highlite_mediagalleryvideo/video/poster');
+            $posterSaveUrl ??= $this->url->getUrl('elgentos_mediagalleryvideo/video/poster');
 
             $item['video_url'] = $this->videoLocator->getFile($path)['url'] ?? '';
             $item['video_poster_url'] = $this->getPosterUrl($path) ?? '';
