@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Shows a video's captured poster wherever the gallery expects an image thumbnail. -->
+    <type name="Magento\MediaGalleryUi\Ui\Component\Listing\Columns\Url">
+        <plugin name="elgentos_gallerymp4solver_video_thumbnail" type="Elgentos\GalleryMp4Solver\Plugin\VideoThumbnail"/>
+    </type>
+    <type name="Magento\MediaGalleryUi\Model\GetDetailsByAssetId">
+        <plugin name="elgentos_gallerymp4solver_video_details_preview" type="Elgentos\GalleryMp4Solver\Plugin\VideoThumbnail"/>
+    </type>
+
+    <!-- Lets the media gallery's own uploader accept video files. -->
+    <type name="Magento\MediaGalleryUi\Ui\Component\ImageUploader">
+        <plugin name="elgentos_gallerymp4solver_allow_video_upload" type="Elgentos\GalleryMp4Solver\Plugin\AllowVideoUpload"/>
+    </type>
+</config>
