@@ -12,7 +12,7 @@ MP4 support for the Magento 2 media gallery: upload, sync, poster thumbnails and
 The package is not on Packagist. Add this repository to your project as a VCS repository, then require it:
 
 ```bash
-composer config repositories.gallery-mp4-solver vcs https://github.com/moods777/video-resolver-magento.git
+composer config repositories.gallery-mp4-solver vcs https://github.com/elgentos/magento2-video-gallery-resolver.git
 composer require elgentos/module-gallery-mp4-solver:^1.0
 bin/magento setup:upgrade
 ```
