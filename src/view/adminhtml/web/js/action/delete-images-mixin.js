@@ -34,8 +34,7 @@ define([
                 paths = recordIds.map(getPath).filter(Boolean);
 
             return deleteImages.apply(this, arguments).then(function (result) {
-                // A cancelled confirmation resolves with { status: 'canceled' }, a delete with its
-                // success message.
+
                 if (typeof result === 'string') {
                     window.dispatchEvent(new CustomEvent('mediaGalleryAssetsDeleted', {
                         detail: { ids: recordIds, paths: paths }

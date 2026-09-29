@@ -52,7 +52,6 @@ define([
                     return;
                 }
 
-                // loadeddata can fire more than once while the element seeks.
                 record.videoPosterRequested = true;
 
                 try {
@@ -62,7 +61,6 @@ define([
                     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
                     image = canvas.toDataURL('image/jpeg', 0.8);
                 } catch (error) {
-                    // A video served from another origin taints the canvas; the <video> tile stays.
                     return;
                 }
 

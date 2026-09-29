@@ -1,21 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!--
-        Describe video files as media gallery assets. The core implementation reads every file
-        with getimagesizefromstring() and hard codes an image/* content type, so it cannot
-        describe a video; ours delegates image files straight back to it.
-    -->
+
     <preference for="Magento\MediaGallerySynchronizationApi\Model\CreateAssetFromFileInterface"
                 type="Elgentos\GalleryMp4Solver\Model\MediaGallery\CreateAssetFromFile"/>
 
-    <!--
-        Registers a video as a gallery asset the moment it is uploaded.
-
-        This plugin on Framework\File\Uploader is what makes an upload appear in the gallery
-        straight away, rather than waiting for a sync run. It only acts on paths matching this
-        injected extension list, so without mp4 here a video lands on disk and stays invisible
-        until bin/magento media-gallery:sync is run by hand.
-    -->
     <type name="Magento\MediaGalleryIntegration\Plugin\SaveImageInformation">
         <arguments>
             <argument name="imageExtensions" xsi:type="array">
@@ -24,12 +12,10 @@
         </arguments>
     </type>
 
-    <!-- A video's poster is its thumbnail, never an asset of its own. -->
     <type name="Magento\MediaGallerySynchronizationApi\Model\ImportFilesComposite">
         <plugin name="elgentos_gallerymp4solver_skip_poster_import" type="Elgentos\GalleryMp4Solver\Plugin\SkipPosterImport" sortOrder="-10"/>
     </type>
 
-    <!-- Without this a manual gallery sync walks straight past every video file. -->
     <type name="Magento\MediaGallerySynchronization\Model\FetchMediaStorageFileBatches">
         <arguments>
             <argument name="fileExtensions" xsi:type="array">
@@ -41,18 +27,9 @@
     <type name="Magento\Cms\Model\Wysiwyg\Images\Storage">
         <arguments>
             <argument name="extensions" xsi:type="array">
-                <!-- Browsing: the default list, used when no storage type is given. -->
                 <item name="allowed" xsi:type="array">
                     <item name="mp4" xsi:type="string">video/mp4</item>
                 </item>
-                <!--
-                    Uploading: the gallery uploader is repointed at type=media (see
-                    Plugin\AllowVideoUpload), so this list has to cover images as well as video.
-
-                    image_allowed is deliberately left alone. It is what Storage::isImage() reads,
-                    and adding mp4 there would have the gallery try to measure and resize videos
-                    as if they were images.
-                -->
                 <item name="media_allowed" xsi:type="array">
                     <item name="jpg" xsi:type="string">image/jpg</item>
                     <item name="jpeg" xsi:type="string">image/jpeg</item>
