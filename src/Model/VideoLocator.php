@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Elgentos\GalleryMp4Solver\Model;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Request\Http;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\ReadInterface;
@@ -45,12 +46,14 @@ class VideoLocator
      * @param Filesystem            $filesystem
      * @param StoreManagerInterface $storeManager
      * @param File                  $file
+     * @param Http                  $request
      * @param string[]              $extensions   Allowed video extensions, lower case and without a leading dot.
      */
     public function __construct(
         private readonly Filesystem $filesystem,
         private readonly StoreManagerInterface $storeManager,
         private readonly File $file,
+        private readonly Http $request,
         private readonly array $extensions = ['mp4']
     ) {
     }
@@ -60,13 +63,14 @@ class VideoLocator
      *
      * @param string $path         Media relative path.
      * @param bool   $requireVideo False to resolve a companion file such as a poster image.
+     * @param bool   $localUrl     True for a URL on the current host, see getLocalMediaUrl().
      *
      * @return array{src: string, name: string, size: int, type: string, url: string}|null Null when
      *     the path is not an existing, allowed file.
      *
      * @throws NoSuchEntityException When the current store cannot be resolved.
      */
-    public function getFile(string $path, bool $requireVideo = true): ?array
+    public function getFile(string $path, bool $requireVideo = true, bool $localUrl = false): ?array
     {
         $path = $this->normalizePath($path, $requireVideo);
 
@@ -87,7 +91,7 @@ class VideoLocator
             'name' => $this->getFileName($path),
             'size' => (int) ($stat['size'] ?? 0),
             'type' => $this->getMimeType($path),
-            'url' => $this->getMediaUrl($path),
+            'url' => $localUrl ? $this->getLocalMediaUrl($path) : $this->getMediaUrl($path),
         ];
     }
 
@@ -145,6 +149,28 @@ class VideoLocator
         $baseUrl = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
 
         return rtrim($baseUrl, '/') . '/' . ltrim($path, '/');
+    }
+
+    /**
+     * Root relative URL of a media relative path, served by whichever host the page is on.
+     *
+     * For previews in the admin. The configured media URL can point at another host, such as a
+     * CDN. A video from there is cross-origin, so the browser taints the canvas a poster frame is
+     * drawn to and refuses to export it. A poster that was only just written to local disk may
+     * also not be on that host (or never will be, on a copy of production). The admin previews
+     * files on its own disk, so it loads them from its own host.
+     *
+     * The request's base path covers an install in a subdirectory, and the media URI is "media" or
+     * "pub/media" depending on the docroot. Each path segment is encoded, so a synced file with a
+     * space, "#" or "?" in its name still resolves.
+     */
+    public function getLocalMediaUrl(string $path): string
+    {
+        $segments = array_map('rawurlencode', explode('/', ltrim($path, '/')));
+
+        return rtrim($this->request->getBasePath(), '/')
+            . '/' . trim($this->filesystem->getUri(DirectoryList::MEDIA), '/')
+            . '/' . implode('/', $segments);
     }
 
     /**

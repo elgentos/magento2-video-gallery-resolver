@@ -60,7 +60,7 @@ class VideoThumbnail
 
             $posterSaveUrl ??= $this->url->getUrl('elgentos_gallerymp4solver/video/poster');
 
-            $item['video_url'] = $this->videoLocator->getFile($path)['url'] ?? '';
+            $item['video_url'] = $this->videoLocator->getFile($path, true, true)['url'] ?? '';
             $item['video_poster_url'] = $this->getPosterUrl($path) ?? '';
             $item['video_poster_save_url'] = $posterSaveUrl;
         }
@@ -102,7 +102,7 @@ class VideoThumbnail
      */
     private function getPosterUrl(string $videoPath): ?string
     {
-        $poster = $this->videoLocator->getFile($this->videoLocator->getPosterPath($videoPath), false);
+        $poster = $this->videoLocator->getFile($this->videoLocator->getPosterPath($videoPath), false, true);
 
         return $poster['url'] ?? null;
     }

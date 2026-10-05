@@ -60,7 +60,7 @@ class PosterStorage
 
         return [
             'src' => $posterPath,
-            'url' => $this->videoLocator->getMediaUrl($posterPath),
+            'url' => $this->videoLocator->getLocalMediaUrl($posterPath),
         ];
     }
 
